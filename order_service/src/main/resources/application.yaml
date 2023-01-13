@@ -1,0 +1,31 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: orderservice
+  datasource:
+    url: jdbc:mysql://localhost:3306/cloud_order?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    org.csq: debug
+  pattern:
+    dataformat: yyyy年MM月dd日 HH:mm:ss:SSS
+
+userservice:
+  ribbon:
+    NFloadBalancerRuleClassName: com.netflix.loadbalancer.RamdomRule
+
+feign:
+  client:
+    config:
+      userservice:
+        loggerLevel: FULL
