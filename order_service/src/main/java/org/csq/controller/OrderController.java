@@ -1,5 +1,7 @@
 package org.csq.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.csq.entity.Order;
 import org.csq.entity.Result;
 import org.csq.entity.User;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Api
 @RestController
 @RequestMapping("order")
 public class OrderController {
@@ -21,6 +24,7 @@ public class OrderController {
         this.userClient = userClient;
     }
 
+    @ApiOperation("获取订单信息")
     @GetMapping("get/{orderid}")
     public Result<Order> getOrder(@PathVariable("orderid") Integer orderid){
         Result<User> user = userClient.getUser(123);
