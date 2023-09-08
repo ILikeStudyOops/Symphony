@@ -1,11 +1,13 @@
 package org.csq.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-@Data
+//@Data
 @ApiModel("用户对象")
+@TableName("sys_user")
 public class User {
     @ApiModelProperty("用户id")
     private Integer id;
