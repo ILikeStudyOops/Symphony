@@ -79,7 +79,7 @@ public class SwaggerConfig {
         List<Parameter> pars = new ArrayList<>();
         ParameterBuilder userId = new ParameterBuilder();
         userId.name("token").description("用户TOKEN").modelRef(new ModelRef("string")).parameterType("header")
-                .required(true).build();
+                .required(false).build();
         pars.add(userId.build());
         return pars;
     }
