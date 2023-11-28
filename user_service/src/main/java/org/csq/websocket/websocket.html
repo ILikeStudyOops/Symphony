@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Demo</title>
+    <script>
+        var id;
+        var ws;
+        function onopen() {
+            console.log('WebSocket 连接已经建立。');
+            ws.send('Hello, server!');
+        };
+        function onmessage(event) {
+            console.log(event.data);
+            document.getElementById("messageSpan").innerHTML = event.data;
+        };
+        function onerror(event) {
+            console.error('WebSocket 连接出现错误：', event);
+        };
+        function onclose() {
+            console.log('WebSocket 连接已经关闭。');
+        };
+        function send(){
+            ws.send(document.getElementById("sendContent").value);
+        }
+        function login(){
+            id = document.getElementById("userId").value;
+            ws = new WebSocket('ws://127.0.0.1:8080/websocket/' + id);
+            ws.onopen = onopen;
+            ws.onmessage = onmessage;
+            ws.onerror = onerror;
+            ws.onclose = onclose;
+            document.getElementById("login").hidden = true;
+            document.getElementById("chat").hidden = false;
+        }
+    </script>
+</head>
+<body>
+    <h1>客户端</h1><br>
+    <div id="login">
+        <input type="text" id="userId"><input type="button" value="登录" onclick="login()">
+    </div>
+    <div id="chat" hidden="true">
+        <span id="messageSpan"></span><br>
+        发送：<input type="text" id="sendContent"/>
+        <input type="button" value="发送" onclick="send()"/>
+    </div>
+</body>
+</html>
