@@ -42,6 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/logout").authenticated()
                 //对于websocket允许访问
                 .antMatchers("/websocket/*").permitAll()
+                //调试开发阶段允许访问swagger接口
+                .antMatchers("/v2/api-docs").permitAll()
                 // 除上面外的所有请求全部需要鉴权认证
                 .anyRequest().access("authenticated and @customExpression.generalRequestProcessing(request,authentication)");
 
