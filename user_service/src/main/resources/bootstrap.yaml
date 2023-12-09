@@ -1,0 +1,23 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: dev
+  application:
+    name: userservice
+  cloud:
+    nacos:
+      server-addr: 192.168.1.5:8848
+      discovery:
+        password: nacos
+        username: nacos
+        namespace: symphony
+      config:
+        server-addr: 192.168.1.5:8848
+        namespace: symphony
+        file-extension: yaml
+        #加载共享配置
+        shared-configs: application.yaml
+logging:
+  level:
+    org.csq: debug

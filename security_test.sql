@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhostMysql
+ Source Server         : 192.168.1.5
  Source Server Type    : MySQL
- Source Server Version : 80030 (8.0.30)
- Source Host           : 127.0.0.1:3306
+ Source Server Version : 80035 (8.0.35)
+ Source Host           : 192.168.1.5:3306
  Source Schema         : security_test
 
  Target Server Type    : MySQL
- Target Server Version : 80030 (8.0.30)
+ Target Server Version : 80035 (8.0.35)
  File Encoding         : 65001
 
- Date: 09/09/2023 02:00:02
+ Date: 10/12/2023 02:33:57
 */
 
 SET NAMES utf8mb4;
@@ -37,7 +37,15 @@ CREATE TABLE `sys_menu`  (
   `del_flag` int NULL DEFAULT 0 COMMENT '是否删除（0未删除 1已删除）',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '菜单表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '菜单表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_menu
+-- ----------------------------
+INSERT INTO `sys_menu` VALUES (1, 'NULL', NULL, NULL, '0', '0', '/user/getData', '#', NULL, NULL, NULL, NULL, 0, NULL);
+INSERT INTO `sys_menu` VALUES (2, 'NULL', NULL, NULL, '0', '0', '/user/get/2', '#', NULL, NULL, NULL, NULL, 0, NULL);
+INSERT INTO `sys_menu` VALUES (3, 'NULL', NULL, NULL, '0', '0', '/order/get/1', '#', NULL, NULL, NULL, NULL, 0, NULL);
+INSERT INTO `sys_menu` VALUES (4, 'NULL', NULL, NULL, '0', '0', '/user/get/123', '#', NULL, NULL, NULL, NULL, 0, NULL);
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -55,7 +63,12 @@ CREATE TABLE `sys_role`  (
   `update_time` datetime NULL DEFAULT NULL,
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '角色表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '角色表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_role
+-- ----------------------------
+INSERT INTO `sys_role` VALUES (1, '管理员', 'admin', '0', 0, NULL, '2023-08-28 21:58:53', NULL, '2023-08-28 21:59:00', NULL);
 
 -- ----------------------------
 -- Table structure for sys_role_menu
@@ -65,7 +78,14 @@ CREATE TABLE `sys_role_menu`  (
   `role_id` bigint NOT NULL AUTO_INCREMENT COMMENT '角色ID',
   `menu_id` bigint NOT NULL DEFAULT 0 COMMENT '菜单id',
   PRIMARY KEY (`role_id`, `menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_role_menu
+-- ----------------------------
+INSERT INTO `sys_role_menu` VALUES (1, 2);
+INSERT INTO `sys_role_menu` VALUES (1, 3);
+INSERT INTO `sys_role_menu` VALUES (1, 4);
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -88,7 +108,12 @@ CREATE TABLE `sys_user`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `del_flag` int NULL DEFAULT 0 COMMENT '删除标志（0代表未删除，1代表已删除）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_user
+-- ----------------------------
+INSERT INTO `sys_user` VALUES (2, 'jack', 'NULL', '123456', '0', '', '', '', '', '1', NULL, '2023-08-28 21:24:15', NULL, '2023-08-28 21:24:23', 0);
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -98,6 +123,11 @@ CREATE TABLE `sys_user_role`  (
   `user_id` bigint NOT NULL AUTO_INCREMENT COMMENT '用户id',
   `role_id` bigint NOT NULL DEFAULT 0 COMMENT '角色id',
   PRIMARY KEY (`user_id`, `role_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_user_role
+-- ----------------------------
+INSERT INTO `sys_user_role` VALUES (2, 1);
 
 SET FOREIGN_KEY_CHECKS = 1;
